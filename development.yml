@@ -1,0 +1,29 @@
+version: '3'
+services:
+  web:
+    volumes:
+      - /var/www/cs/notbank-service/public:${WORKDIR}/public
+    ports:
+      - "8083:80"
+    networks:
+      - dockernet
+  api:
+    build:
+      context: api
+      dockerfile: Dockerfile-dev
+      args:
+        - REPO_URL=${REPO_URL}
+        - REPO_BRANCH=${REPO_BRANCH}
+        - REPO_USER=${REPO_USER}
+        - REPO_PWD=${REPO_PWD}
+        - WORKDIR=${WORKDIR}
+    volumes:
+      - /var/www/cs/notbank-service:${WORKDIR}
+    networks:
+      dockernet:
+        aliases:
+          - csnotbank-service-api
+networks:
+  dockernet:
+    external:
+      name: dockernet

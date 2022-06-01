@@ -1,0 +1,16 @@
+version: '3'
+services:
+  web:
+    build:
+      context: web
+      args:
+        - WORKDIR=${WORKDIR}
+  api:
+    build:
+      context: api
+      args:
+        - REPO_URL=${REPO_URL}
+        - REPO_BRANCH=${REPO_BRANCH}
+        - REPO_USER=${REPO_USER}
+        - REPO_PWD=${REPO_PWD}
+        - WORKDIR=${WORKDIR}

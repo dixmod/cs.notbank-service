@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    image: registry.direct-credit.ru/cs.notbank-service:web
+    environment:
+      - FASTCGI=api:9000
+    depends_on:
+      - api
+  api:
+    image: registry.direct-credit.ru/cs.notbank-service:api
+    env_file:
+      - .appenv
