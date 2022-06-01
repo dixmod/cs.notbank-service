@@ -36,7 +36,7 @@ RUN apk add protoc
 # pull source
 
 
-#ARG REPO_URL
+ARG REPO_URL
 ARG REPO_BRANCH
 ARG REPO_USER
 ARG REPO_PWD
